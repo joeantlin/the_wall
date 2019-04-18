@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login and Register</title>
+    {% load static %}	
+    <link rel="stylesheet" href="{% static 'log_app/css/style.css' %}">
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages red">
+        <li>ERROR</li>
+        {% for message in messages %}
+            <li {% if message.tags %} 
+                    class="{{ message.tags }}"
+                {% endif %}>
+                {{ message }}
+            </li>
+        {% endfor %}
+        <li>ERROR</li>
+    </ul>
+    {% endif %}
+    <div class="wrapper">
+        <div class="main-left">
+            <h1>Registration</h1>
+            <form action="/register" method="post">
+                {% csrf_token %}
+                <label>
+                    First Name
+                    <input type="text" name="fname">
+                </label>
+                <label>
+                    Last Name
+                    <input type="text" name="lname">
+                </label>
+                <label>
+                    Email
+                    <input type="text" name="email">
+                </label>
+                <label>
+                    Password
+                    <input type="text" name="pass">
+                </label>
+                <label>
+                    Confirm Password
+                    <input type="text" name="pwc">
+                </label>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+
+        <div class="main-right">
+            <h1>Login</h1>
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <label>
+                    Email
+                    <input type="text" name="email">
+                </label>
+                <label>
+                    Password
+                    <input type="text" name="pass">
+                </label>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

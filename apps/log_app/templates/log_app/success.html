@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Success</title>
+    {% load static %}	
+    <link rel="stylesheet" href="{% static 'log_app/css/style.css' %}">
+
+</head>
+<body>
+{% if messages %}
+    <ul class="messages green">
+        {% for message in messages %}
+            <li {% if message.tags %} 
+                    class="{{ message.tags }}"
+                {% endif %}>
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="wrapper">
+        <div class="header">
+            <div class="nav1">
+                <h2>CodingDojo Wall</h2>
+            </div>
+            <div class="nav4">
+                <h3>Welcome {{ request.session.name }}</h2>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+
+        <div class="main">
+            <form class="mpost" action="/postmessage" method="post">
+                {% csrf_token %}
+                <label>
+                    Post a message
+                    <textarea name="message"></textarea>
+                    <input type="hidden" name="pageid" value="{{ request.session.id }}">
+                    <input type="submit" value="Message">
+                </label>
+            </form>
+
+            <div class="messageboard">
+            {% for message in all_messages %}
+                <p><b>{{ message.user.first_name }} {{ message.user.last_name }} - <i>{{ message.created_at }}</i></b></p>
+                <div class="post">
+                    <p>{{ message.content }}</p>
+                    {% if message.user.id == request.session.id %}
+                        <a href="/bye/message/{{ message.id }}">delete</a>
+                    {% endif %}
+                    <hr>
+
+                    <div class="comments">
+                    {% for comment in all_comments %}
+                        {% if comment.message.id == message.id %}
+                            <p><b>{{ comment.user.first_name }} {{ comment.user.last_name }} - <i>{{ comment.created_at }}</i></b></p>
+                            <p>{{ comment.content }}</p>
+                            {% if comment.user.id == request.session.id %}
+                                <a href="/bye/comment/{{ comment.id }}">delete</a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+
+                    <form class="mpost" action="/postcomment" method="post">
+                        {% csrf_token %}
+                        <label>
+                            Post a comment
+                            <textarea name="comment"></textarea>
+                            <input type="hidden" name="pageid" value="{{ request.session.id }}">
+                            <input type="hidden" name="messid" value="{{ message.id }}">
+                            <input type="submit" value="Comment">
+                        </label>
+                    </form>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+
+        </div>
+    </div>
+    
+</body>
+</html>

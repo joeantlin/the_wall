@@ -1,0 +1,286 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    /* border: red dashed 0.1px; */
+}
+
+p, th, td, li, h1, h2, h3, h4, label, a{
+    margin-bottom: 5px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+p, li, a {
+    padding: 5px 10px;
+}
+
+h1, h2, h3, h4, label {
+    padding: 10px 20px;
+}
+
+form, table {
+    margin: 20px 10px;
+}
+
+
+a {
+    color: rgb(39, 175, 230);
+    text-decoration-line: none;
+}
+    a:hover {
+        text-decoration-line: underline;
+    }
+
+/*        TABLES       */
+    table {
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgba(240, 239, 239, 0.5);
+        border-radius: 10px;
+        border-spacing: 0px;
+    }
+    th, td {
+        padding: 10px 20px;
+        border: none;
+    }
+        tr:nth-child(even) {
+            background-color: rgb(240, 239, 239);
+        }
+        tr:first-child {
+            background-color: rgb(39, 175, 230);
+            border-radius: 40px;
+        }
+            tr:first-child th:first-child{
+                border-radius: 10px 0px 0px 0px;
+            }
+            tr:first-child th:last-child{
+                border-radius: 0px 10px 0px 0px;
+            }
+
+
+/*         FORM         */
+    form {
+        width: 300px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 15px 20px 20px 20px;
+        background-color: rgba(240, 239, 239, 0.5);
+        border-radius: 10px;
+        box-sizing: border-box;
+    }
+    label {
+        display: block;
+        font-weight: normal;
+        padding-bottom: 5px;
+        padding-top: 0px;
+    }
+    input, select, textarea {
+        display: block;
+        width: 100%;
+        height: 40px;
+        margin: 10px auto 5px auto;
+        padding-right: 10px;
+        padding-left: 10px;
+        border-radius: 5px;
+        box-sizing: border-box;
+        border: none;
+    }
+    input[type=submit] {
+        background-color: rgb(39, 175, 230);
+        color: white;
+        font-size: 15px;
+        border-radius: 10px;
+        width: 150px;
+    }
+        input[type=submit]:hover {
+            background-color: rgb(15, 135, 182);
+        }
+    textarea {
+        height: 80px;
+    }
+
+/*         LISTS         */
+    ul {
+        padding-left: 30px;
+    }
+
+/*        ARTICLES       */
+    article {
+
+    }
+
+
+.wrapper {
+    display: grid;
+    max-width: 900px;
+    width: 100%;
+    margin: auto;
+    grid-template-rows: auto;
+    grid-gap: 10px;
+    grid-template-areas:
+    "header header"
+    "main main"
+    "left right"
+    "footer footer";
+}
+
+.header {
+    grid-area: header;
+    display: grid;
+    width: 100%;
+    margin: 10px 0px 0px 0px;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "nav1 nav1 nav4";
+}
+    .nav1{
+        grid-area: nav1;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .nav2{
+        grid-area: nav2;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .nav3{
+        grid-area: nav3;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .nav4{
+        grid-area: nav4;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+.main {
+    grid-area: main;
+    width: 100%;
+    margin: 0px;
+}
+
+.aside {
+    grid-area: aside;
+    width: 100%;
+    margin: 0px;
+}
+
+.main-left {
+    grid-area: left;
+    width: 100%;
+    margin: 0px;
+    border-right: 1px solid rgba(228, 227, 227, 0.719);
+}
+
+.main-right {
+    grid-area: right;
+    width: 100%;
+    margin: 0px;
+}
+
+.footer {
+    grid-area: footer;
+    width: 100%;
+    margin: 0px;
+}
+
+
+
+/*         Project Only           */
+
+.header {
+    border-bottom: black solid 1px;
+    padding-bottom: 5px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.nav1 .nav4 {
+    vertical-align: top;
+}
+.nav4 {
+    text-align: right;
+    padding-right: 20px;
+}
+.nav4 h3, .nav4 a {
+    text-align: center;
+    display: inline-block;
+}
+.nav4 h3, .nav4 a, .nav1 h2{
+    padding-bottom: 0px;
+    vertical-align: bottom;
+}
+.messages{
+    display: block;
+    text-align: center;
+    margin: 10px auto -10px auto;
+    padding: 3px 0px;
+    height: 22px;
+    color: white;
+    
+}
+.messages li {
+    font-size: 10px;
+    padding: 0px 10px;
+    display: inline-block;
+    text-align: center;
+}
+.red {
+    background-color: red;
+}
+.green {
+    background-color: green;
+}
+
+form[class=mpost] {
+    width: 100%;
+    background: none;
+}
+    form[class=mpost] textarea {
+        border: solid 1px rgb(39, 175, 230);
+    }
+    form[class=mpost] input[type=submit] {
+        float: right;
+    }
+
+.messageboard {
+    width: 90%;
+    margin: 50px auto;
+}
+.post {
+    margin-left:20px;
+}
+
+.comments p, .comments a{
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    .wrapper {
+        width: 100%;
+        grid-template-areas:
+        "header"
+        "main"
+        "left"
+        "right"
+        "footer ";
+    }
+
+    .left {
+        border: none;
+    }
+
+}
+
+@media (max-width: 480px){
+    .header {
+        grid-template-areas:
+        "nav1 nav4";
+    }
+    .header h2, .header h3, .header a{
+        font-size: 15px;
+    }
+}
